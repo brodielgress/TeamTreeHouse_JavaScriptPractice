@@ -1,29 +1,40 @@
-// const myHeading = document.getElementsByTagName('h1')[0];
-// const myButton = document.getElementById('myButton');
-// const myTextInput = document.getElementById('myTextInput');
+const toggleList = document.getElementById('toggleList');
+const listDiv = document.querySelector('.list');
 
-// myButton.addEventListener('click', () => {
-//     myHeading.style.color = myTextInput.value;
-// });
+const descriptionInput = document.querySelector('input.description');
+const descriptionP = document.querySelector('p.description');
+const descriptionButton = document.querySelector('button.description');
 
-// myTextInput.addEventListener('keypress', function (e) {
-//     myHeading.style.color = myTextInput.value;
-// })
+const addItemInput = document.querySelector('input.addItemInput');
+const addItemButton = document.querySelector('button.addItemButton');
 
-const myList = document.getElementsByTagName('li');
+const removeItemButton = document.querySelector('button.removeItemButton');
 
-for (let i = 0; i < myList.length; i += 1) {
-    myList[i].style.color = 'purple';
-}
+toggleList.addEventListener('click', () => {
+    if (listDiv.style.display == 'none') {
+        listDiv.style.display = 'block';   
+        toggleList.textContent = "Hide list";
+    } else {
+        listDiv.style.display = 'none';
+        toggleList.textContent = "Show list";
+    }
+})
 
-const errorNotPurple = document.querySelectorAll('.error-not-purple');
+descriptionButton.addEventListener('click', () => {
+    descriptionP.textContent = descriptionInput.value + ':'
+    descriptionInput.value = '';
+})
 
-for (let i = 0; i < errorNotPurple.length; i += 1) {
-    errorNotPurple[i].style.color = 'red';
-}
+addItemButton.addEventListener('click', () => {
+    let ul = document.getElementsByTagName('ul')[0];
+    let li = document.createElement('li');
+    li.textContent = addItemInput.value;
+    ul.appendChild(li);
+    addItemInput.value = '';
+})
 
-const evens = document.querySelectorAll('li:nth-child(odd)');
-
-for (let i = 0; i < errorNotPurple.length; i += 1) {
-    evens[i].style.backgroundColor = 'lightgray';
-}
+removeItemButton.addEventListener('click', () => {
+    let ul = document.getElementsByTagName('ul')[0];
+    let li = document.querySelector('li:last-child');
+    ul.removeChild(li);
+})
