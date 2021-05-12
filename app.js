@@ -10,7 +10,19 @@ const addItemButton = document.querySelector('button.addItemButton');
 
 const removeItemButton = document.querySelector('button.removeItemButton');
 
-toggleList.addEventListener('click', () => {
+listDiv.addEventListener('mouseover', (event) => {
+    if (event.target.tagName == 'LI') {
+        event.target.textContent = event.target.textContent.toUpperCase();
+    }
+})
+
+listDiv.addEventListener('mouseout', (event) => {
+    if (event.target.tagName == 'LI') {
+        event.target.textContent = event.target.textContent.toLowerCase();
+    }
+})
+
+toggleList.addEventListener('click', (event) => {
     if (listDiv.style.display == 'none') {
         listDiv.style.display = 'block';   
         toggleList.textContent = "Hide list";
